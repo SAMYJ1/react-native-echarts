@@ -11,6 +11,9 @@ export default class App extends Component {
   }
 
   render() {
+
+    let source = __DEV__?require('./tpl.html'):{uri: 'file:///android_asset/tpl.html'}
+
     return (
       <View style={{flex: 1, height: this.props.height || 400,}}>
         <WebView
@@ -20,7 +23,7 @@ export default class App extends Component {
           style={{
             height: this.props.height || 400,
           }}
-          source={require('./tpl.html')}
+          source={source}
           onMessage={event => this.props.onPress ? this.props.onPress(JSON.parse(event.nativeEvent.data)) : null}
         />
       </View>

@@ -12,7 +12,10 @@ export default class App extends Component {
 
   render() {
 
-    let source = __DEV__?require('./tpl.html'):{uri: 'file:///android_asset/tpl.html'}
+    let source = require('./tpl.html')
+    if (Platform.OS === "android" && !__DEV__) {
+      source = {uri: 'file:///android_asset/tpl.html'}
+    }
 
     return (
       <View style={{flex: 1, height: this.props.height || 400,}}>
